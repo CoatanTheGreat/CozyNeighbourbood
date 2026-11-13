@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+/* Kleuren: een schemeravond met lantaarnlicht */
+:root {
+  --ink: #1f1c3d;
+  --panel: rgba(33, 29, 66, 0.88);
+  --panel-solid: #262250;
+  --panel-raised: #322d63;
+  --line: rgba(255, 255, 255, 0.12);
+  --text: #f6f2ff;
+  --muted: #bdb6e0;
+  --lantern: #ffc857;
+  --lantern-deep: #f2a93b;
+  --leaf: #8bd17c;
+  --heart: #ff8fa3;
+  --sky: #9ad1ff;
+  --font: 'Nunito', ui-rounded, 'SF Pro Rounded', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
 html,
 body,
 #root {
@@ -8,8 +25,167 @@ body,
 }
 
 body {
-  overscroll-behavior: none;              /* geen elastisch doorscrollen op iPad */
-  -webkit-tap-highlight-color: transparent; /* geen grijze flits bij tikken */
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--text);
+  background: #262250;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+svg text {
+  font-family: var(--font);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--lantern);
+  outline-offset: 2px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(10, 6, 30, 0.35);
+}
+
+.panel-solid {
+  background: var(--panel-solid);
+  border: 1px solid var(--line);
+}
+
+.raised {
+  background: var(--panel-raised);
+  border: 1px solid var(--line);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 42px;
+  padding: 0 0.9rem;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 14px;
+  border: 1px solid var(--line);
+  background: var(--panel-raised);
+  color: var(--text);
+  transition: background 120ms, transform 120ms;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.btn-primary {
+  background: var(--lantern);
+  color: var(--ink);
+  border-color: transparent;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #ffd57a;
+}
+
+.btn-heart {
+  background: var(--heart);
+  color: var(--ink);
+  border-color: transparent;
+}
+
+.btn-quiet {
+  background: transparent;
+}
+
+.btn-quiet:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.icon-btn[aria-pressed='true'] {
+  background: var(--lantern);
+  color: var(--ink);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 13px;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.label {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.bar {
+  height: 8px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+}
+
+.scroll-soft {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.fade-away {
+  transition: opacity 600ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .fade-away {
+    transition: none;
+  }
 }
